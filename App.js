@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import codePush from 'react-native-code-push';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,7 +18,7 @@ const instructions = Platform.select({
 });
 
 type Props = {};
-export default class App extends Component<Props> {
+class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
@@ -47,3 +48,9 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_START
+};
+
+export default codePush(codePushOptions)(App);
